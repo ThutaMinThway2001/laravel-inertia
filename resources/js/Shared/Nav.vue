@@ -1,19 +1,33 @@
 <template>
-    <nav class="mt-6">
-        <ul class="list-disc">
-            <li><Link class="text-blue-500 hover:underline" href="/">Home</Link></li>
-            <li><Link class="text-blue-500 hover:underline" href="/users">Users</Link></li>
-            <li><Link class="text-blue-500 hover:underline" href="/setting">Setting</Link></li>
-            <li><Link class="text-blue-500 hover:underline" :data="{foo: 'bar'}" href="/logout" method="post" as="button">Logout</Link></li>
+    <nav class="ml-6">
+        <ul class="flex space-x-4 list-inside">
+            <li>
+                <NavLink href='/' :active="$page.component === 'Home'">
+                HOME
+                </NavLink>
+            </li>
+            
+            <li>
+                <NavLink href='/users' :active="$page.component === 'Users'">
+                USERS
+                </NavLink>
+            </li>
+            
+            <li>
+                <NavLink href="/setting" :active="$page.component === 'Setting'">
+                SETTING
+                </NavLink>
+            </li>
         </ul>
     </nav>
 </template>
 
 <script>
-import { Link } from '@inertiajs/inertia-vue3'
+import NavLink from './NavLink.vue'
+
 export default {
     components:{
-        Link
+        NavLink
     }
 }
 </script>

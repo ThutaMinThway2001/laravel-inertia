@@ -1,13 +1,15 @@
 <template>
-    <div id="home">
-        <h1>Setting</h1>
-    </div>
-        <Nav></Nav>
+    <Layout>
+        <div class="text-4xl font-bold">
+            <h1>Setting</h1>
+        </div>
+    </Layout> 
 </template>
 
 <script>
-import Nav from "../Shared/Nav.vue"
+import Layout from '../Shared/Layout.vue'
+
 export default {
-    components:{ Nav }
+    components:{ Layout }
 }
 </script>

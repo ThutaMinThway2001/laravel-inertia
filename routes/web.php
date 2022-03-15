@@ -4,20 +4,16 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return inertia('Home');
+    return Inertia::render('Home');
 });
 
 Route::get('/users', function () {
     sleep(2);
-    return inertia('Users', [
+    return Inertia::render('Users', [
         'time' => now()->toTimeString()
     ]);
 });
 
 Route::get('/setting', function () {
-    return inertia('Setting');
-});
-
-Route::post('/logout', function () {
-    dd(request('foo'));
+    return Inertia::render('Setting');
 });
