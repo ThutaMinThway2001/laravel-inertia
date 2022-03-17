@@ -10,7 +10,7 @@
                 Name
             </label>
             <input v-model="form.name" type="text" class="border border-gray-400 p-2 w-full" name="name" id="name">
-            <div v-if="errors.name" v-text="errors.name" class="text-red-500 text-xs"></div>
+            <div v-if="form.errors.name" v-text="form.errors.name" class="text-red-500 text-xs"></div>
         </div>
 
         <div class="mb-4">
@@ -18,7 +18,7 @@
                 Email
             </label>
             <input v-model="form.email" type="email" class="border border-gray-400 p-2 w-full" name="email" id="email">
-            <div v-if="errors.email" v-text="errors.email" class="text-red-500 text-xs"></div>
+            <div v-if="form.errors.email" v-text="form.errors.email" class="text-red-500 text-xs"></div>
         </div>
 
         <div class="mb-4">
@@ -26,11 +26,11 @@
                 password
             </label>
             <input  v-model="form.password" type="password" class="border border-gray-400 p-2 w-full" name="password" id="password">
-            <div v-if="errors.password" v-text="errors.password" class="text-red-500 text-xs"></div>
+            <div v-if="form.errors.password" v-text="form.errors.password" class="text-red-500 text-xs"></div>
         </div>
 
         <div class="mb-4">
-            <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-400">Submit</button>
+            <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-400" :disabled="form.processing">Submit</button>
         </div>
     </form>
 </template>
@@ -38,18 +38,19 @@
 <script setup>
 import { reactive } from "@vue/reactivity";
 import {Inertia} from '@inertiajs/inertia';
+import {useForm} from '@inertiajs/inertia-vue3';
     defineProps({
         errors: Object
     })
 
-    let form = reactive({
+    let form = useForm({
         name: '',
         email: '',
         password: ''
     })
 
     let handlerSubmit = () => {
-        Inertia.post('/users', form);
+        form.post('/users');
     }
 </script>
 

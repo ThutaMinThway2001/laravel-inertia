@@ -43,7 +43,8 @@
 import {Inertia} from '@inertiajs/inertia'
 import { ref } from '@vue/reactivity';
 import { watch } from '@vue/runtime-core';
-import Paginator from '../../Shared/Paginator.vue'
+import Paginator from '../../Shared/Paginator.vue';
+import debounce from 'lodash/debounce';
 
 let props = defineProps({
     users: Object, 
@@ -52,10 +53,11 @@ let props = defineProps({
 
 let search = ref(props.filters.search);
 
-watch(search, value => {
+watch(search, debounce(function(value){
+    console.log('hello inertia.')
     Inertia.get('/users', {search: value}, {
         preserveState: true,
         replace: true
     });
-})
+}, 300));
 </script>
