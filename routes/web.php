@@ -39,7 +39,7 @@ Route::post('/users', function () {
 
     User::create($attributes);
 
-    return redirect('/');
+    return redirect('/users');
 });
 
 Route::get('/setting', function () {
