@@ -4,7 +4,7 @@
         <div class="flex items-center">
             <h1 class="text-3xl">Users</h1>
 
-            <Link href="/users/create" class="text-blue-500 text-sm ml-4">New User</Link>
+            <Link v-if="can.createUser" href="/users/create" class="text-blue-500 text-sm ml-4">New User</Link>
         </div>
         <input v-model="search" type="text" placeholder="search..." class="border px-2 rounded-lg">
     </div>
@@ -48,7 +48,8 @@ import debounce from 'lodash/debounce';
 
 let props = defineProps({
     users: Object, 
-    filters: Object
+    filters: Object,
+    can: Object
     });
 
 let search = ref(props.filters.search);
